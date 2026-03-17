@@ -9,12 +9,34 @@ Algorithm:
 4.	Call the search function and perform other linked list operations as needed.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void search(char data){
+    struct node *temp = head;
+    int pos = 0;
+    
+    while(temp != NULL) {
+        if(temp->data == data) {
+            printf("Element found at position %d\n", pos);        
+            }
+        temp = temp->next;
+        pos++;
+    }
+    printf("Element not found\n");
+}
+```
 
 Output:
-
-//paste your output here
+<img width="568" height="400" alt="image" src="https://github.com/user-attachments/assets/c78a5e47-acb6-4460-98cb-050d9d155741" />
 
 
 
@@ -33,12 +55,39 @@ Algorithm:
 4.	Call the insert function and perform other linked list operations as needed.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    char data;
+    struct node *next;
+};
+
+struct node *head = NULL;
+
+void insert(char data) {
+    struct node *newnode, *temp;
+    
+    newnode = (struct node *)malloc(sizeof(struct node));
+    newnode->data = data;
+    newnode->next = NULL;
+    
+    if(head == NULL) {
+        head = newnode;
+    } else {
+        temp = head;
+        while(temp->next != NULL) {
+            temp = temp->next;
+        }
+        temp->next = newnode;
+    }
+}
+```
 
 Output:
 
-//paste your output here
+<img width="377" height="342" alt="image" src="https://github.com/user-attachments/assets/5f908f1b-2fc5-4285-9fcf-6900a675a20b" />
 
  
 Result:
@@ -57,12 +106,32 @@ Algorithm:
 4.	Move to the next node by updating the temp pointer to point to the next node (temp = temp->next).
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    int data;
+    struct node *next;
+    struct node *prev;
+};
 
+struct node *head = NULL;
+
+void display() {
+    struct node *temp = head;
+    
+    printf("Doubly linked list: ");
+    while(temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+    printf("\n");
+}
+```
 Output:
 
-//paste your output here
+<img width="382" height="464" alt="image" src="https://github.com/user-attachments/assets/9247d95a-07a4-4d68-ac5d-40ec688085a3" />
 
 
 Result:
@@ -82,13 +151,42 @@ Algorithm:
 5.	Set the new node's prev pointer to the last node and update the last node's next pointer to the new node.
  
 Program:
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-//type your code here
+struct node {
+    float data;
+    struct node *next;
+    struct node *prev;
+};
+
+struct node *head = NULL;
+
+static struct node* create_node(float data) {
+    struct node *newnode = (struct node *)malloc(sizeof(struct node));
+    newnode->data = data;
+    newnode->next = NULL;
+    newnode->prev = NULL;
+    return newnode;
+}
+void insert(float data) {
+    struct node *newnode = create_node(data);
+    if(head == NULL) {
+        head = newnode;
+        return;
+    }
+    struct node *temp = head;
+    while(temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newnode;
+    newnode->prev = temp;
+}
+```
 
 Output:
-
-//paste your output here
-
+<img width="447" height="611" alt="image" src="https://github.com/user-attachments/assets/07244daa-2a10-4ad1-9431-348a4344b2b1" />
 
 Result:
 Thus, the program to insert an element in doubly linked list is verified successfully.
@@ -125,14 +223,39 @@ o	If the element is not found in any node, print a message indicating the elemen
 
 Program:
 
-//type your code here
+```
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+    char data; 
+    struct Node *next;
+}*head;
+void delete()
+{
+    if(head==NULL){
+        printf("List is empty\n");
+        return;
+    }
+    else if(head->next==NULL){
+        head=NULL;
+        free(head);
+        printf("Node deleted from the begining ...\n");
+    }
+    else{
+        struct Node *ptr;
+        ptr=head;
+        head=head->next;
+        free(ptr);
+        printf("Node deleted from the begining ...\n");
+    }
+}
+
+```
 
 Output:
 
-//paste your output here
-
-
-
+<img width="945" height="627" alt="image" src="https://github.com/user-attachments/assets/98e01354-5c09-442e-8919-d5175424f1f8" />
 
 
 Result:
